@@ -3,7 +3,7 @@ import { StreamClient } from "@stream-io/node-sdk";
 import "dotenv/config";
 
 const apiKey = process.env.STREAM_API_KEY;
-const apiSecret = process.env.STREAM_API_SECRET;
+const apiSecret = process.env.STREAM_SECRET_KEY;
 
 if (!apiKey || !apiKey) {
   console.log("Stream failed");
