@@ -7,16 +7,22 @@ import { functions, inngest } from "./libs/inngest.js";
 import { clerkMiddleware } from "@clerk/express";
 import { protectRoute } from "./middleware/ProtectRoute.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import sessionRoutes from "./routes/sessionRoutes.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(clerkMiddleware());
 app.use("/api/inngest", serve({ client: inngest, functions }));
-app.use("api/chat", chatRoutes);
-app.use("api/session", chatRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/sessions", sessionRoutes);
 connectDB();
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Hello World" });
