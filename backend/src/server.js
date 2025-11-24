@@ -13,9 +13,12 @@ const app = express();
 
 app.use(express.json());
 
+// Updated CORS configuration
+const allowedOrigins = [process.env.FRONTEND_URL].filter(Boolean);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
