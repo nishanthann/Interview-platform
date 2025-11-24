@@ -14,14 +14,14 @@ const app = express();
 app.use(express.json());
 
 // Updated CORS configuration
-const allowedOrigins = [process.env.FRONTEND_URL].filter(Boolean);
-
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://interview-platform-mtx7.vercel.app",
     credentials: true,
   })
 );
+
+app.use(express.json());
 app.use(clerkMiddleware());
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
