@@ -12,6 +12,10 @@ import sessionRoutes from "./routes/sessionRoutes.js";
 const app = express();
 
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-store");
+  next();
+});
 
 // Updated CORS configuration
 app.use(
